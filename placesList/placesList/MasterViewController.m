@@ -28,8 +28,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self getVenuesList];
 
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    self.navigationItem.rightBarButtonItem = addButton;
 }
@@ -41,13 +39,14 @@
 
 #pragma mark - Segues
 
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        NSDate *object = self.objects[indexPath.row];
-//        [[segue destinationViewController] setDetailItem:object];
-//    }
-//}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        DetailViewController *detailVC = [segue destinationViewController];
+        detailVC.venueName = nameArray[indexPath.row];
+//        [[segue destinationViewController] setNameLabel:nameArray[indexPath.row]];
+    }
+}
 
 #pragma mark - Table View
 
