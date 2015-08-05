@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "VenuesListTableViewCell.h"
+#import "mapKit/MapKit.h"
+#import "CoreLocation/CoreLocation.h"
 
-@interface MasterViewController : UITableViewController
 
+@interface MasterViewController : UITableViewController <CLLocationManagerDelegate>
+@property (nonatomic , strong) CLLocationManager *locationManager;
+@property (nonatomic, retain) CLLocation *location;
 
 @end
 

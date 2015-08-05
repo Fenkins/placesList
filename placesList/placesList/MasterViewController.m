@@ -27,9 +27,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self getVenuesList];
-
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
+    [self locationManSet];
+    NSLog(@"COORD %f",_location.coordinate.latitude);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +68,52 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return NO;
 }
+
+-(void)locationManSet {
+    _locationManager=[[CLLocationManager alloc] init];
+    _locationManager.desiredAccuracy=kCLLocationAccuracyBest;
+    _locationManager.distanceFilter=kCLDistanceFilterNone;
+    _locationManager.delegate=self;
+    
+    if ([_locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [_locationManager requestWhenInUseAuthorization];
+    }
+    [_locationManager startMonitoringSignificantLocationChanges];
+    [_locationManager startUpdatingLocation];
+    
+    _location=[_locationManager location];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Error detecting location %@", error);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    _location = (CLLocation*)locations.lastObject;
+    NSLog(@"Longitude: %f, Latitude: %f", _location.coordinate.longitude, _location.coordinate.latitude);
+}
+
+//- (void)locationManager:(CLLocationManager *)manager
+//    didUpdateToLocation:(CLLocation *)newLocation
+//           fromLocation:(CLLocation *)oldLocation
+//{
+//    int degrees = newLocation.coordinate.latitude;
+//    double decimal = fabs(newLocation.coordinate.latitude - degrees);
+//    int minutes = decimal * 60;
+//    double seconds = decimal * 3600 - minutes * 60;
+//    NSString *lat = [NSString stringWithFormat:@"%d° %d' %1.4f\"",
+//                     degrees, minutes, seconds];
+//    NSLog(@"Lat: %@",lat);
+//    degrees = newLocation.coordinate.longitude;
+//    decimal = fabs(newLocation.coordinate.longitude - degrees);
+//    minutes = decimal * 60;
+//    seconds = decimal * 3600 - minutes * 60;
+//    NSString *longt = [NSString stringWithFormat:@"%d° %d' %1.4f\"",
+//                       degrees, minutes, seconds];
+//    NSLog(@"Lat: %@",longt);
+//}
 
 -(void)getVenuesList {
     NSDate *currentDate = [NSDate date];

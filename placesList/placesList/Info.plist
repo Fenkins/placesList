@@ -46,5 +46,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To show venues list and location on the map</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>To show venues list and location on the map</string>
+	<key>privacy - location usage description</key>
+	<string>To show venues list and location on the map</string>
 </dict>
 </plist>
