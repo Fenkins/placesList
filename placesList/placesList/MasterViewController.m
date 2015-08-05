@@ -44,7 +44,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *detailVC = [segue destinationViewController];
         detailVC.venueName = nameArray[indexPath.row];
-//        [[segue destinationViewController] setNameLabel:nameArray[indexPath.row]];
     }
 }
 
