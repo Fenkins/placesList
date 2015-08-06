@@ -17,6 +17,7 @@
     NSArray *nameArray;
     NSArray *categoryArray;
     NSArray *distanceArray;
+    NSArray *coordinatesArray;
 }
 
 - (void)awakeFromNib {
@@ -176,6 +177,18 @@
             }
         }
         distanceArray = [distanceStackArray copy];
+        
+        // What are coordinates of the venue/venues?
+//        NSArray *coordinatesLatArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lat"];
+//        NSArray *coordinatesLngArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lng"];
+        NSMutableArray *coordinatesMutableArray = [[NSMutableArray alloc]init];
+        for (NSDictionary *items in responseData) {
+            CGFloat latitude = [[[items objectForKey: @"location"] objectForKey: @"lat"] floatValue];
+            CGFloat longitude = [[[items objectForKey: @"location"] objectForKey: @"lng"] floatValue];
+            CLLocation *venueLocation = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
+            [coordinatesMutableArray addObject:venueLocation];
+        }
+        NSLog(@"CRAP %@",coordinatesMutableArray);
     }
 }
 
