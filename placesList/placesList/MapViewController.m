@@ -17,6 +17,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    MKPlacemark *venuePlacemark = [[MKPlacemark alloc]initWithCoordinate:_passedCoordinates.coordinate addressDictionary:nil];
+    
+
+    
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    point.coordinate = venuePlacemark.coordinate;
+    point.title = _passedName;
+    point.subtitle = _passedDistance;
+    
+    
+    // Set your region using placemark (not point)
+    MKCoordinateRegion region = self.mapView.region;
+    MKCoordinateSpan span;
+    span.latitudeDelta = 0.01;
+    span.longitudeDelta = 0.01;
+    region.span = span;
+    region.center = venuePlacemark.coordinate;
+    
+    // Add point (not placemark) to the mapView
+    [self.mapView setRegion:region animated:YES];
+    [self.mapView addAnnotation:point];
+    
+    // Select the PointAnnotation programatically
+    [self.mapView selectAnnotation:point animated:NO];
+    
+    
+    
+    
+//        [self.mapView addAnnotation:venuePlacemark];
+//        [self.mapView setRegion:region animated:YES];
+//        [self.mapView regionThatFits:region];
+    
+//    NSLog(@"COORD LOOK %@",_passedCoordinates);
+
 }
 
 - (void)didReceiveMemoryWarning {

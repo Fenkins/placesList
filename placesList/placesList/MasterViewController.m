@@ -49,6 +49,8 @@
         detailVC.venueCategory = categoryArray[indexPath.row];
         detailVC.venueCity = cityesArray[indexPath.row];
         detailVC.venueStreet = streetsArray[indexPath.row];
+        detailVC.venueCoordinates = coordinatesArray[indexPath.row];
+        detailVC.venueDistance = distanceArray[indexPath.row];
     }
 }
 
@@ -193,8 +195,6 @@
         distanceArray = [distanceStackArray copy];
         
         // What are the coordinates of the venue/venues?
-//        NSArray *coordinatesLatArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lat"];
-//        NSArray *coordinatesLngArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lng"];
         NSMutableArray *coordinatesMutableArray = [[NSMutableArray alloc]init];
         for (NSDictionary *items in responseData) {
             CGFloat latitude = [[[items objectForKey: @"location"] objectForKey: @"lat"] floatValue];
@@ -202,6 +202,7 @@
             CLLocation *venueLocation = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             [coordinatesMutableArray addObject:venueLocation];
         }
+        coordinatesArray = [coordinatesMutableArray copy];
         
         // What are the cityes our venues in?
         NSArray *cityesArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"city"];
@@ -215,7 +216,6 @@
             }
         }
         cityesArray = [cityesStackArray copy];
-        NSLog(@"%@",cityesArray);
         
         // What are the streets our venues in?
         NSArray *streetsArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"crossStreet"];
@@ -240,7 +240,6 @@
             }
         }
         streetsArray = [streetsStackArray copy];
-        NSLog(@"%@",streetsArray);
 
     }
 }

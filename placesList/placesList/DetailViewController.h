@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreLocation/CoreLocation.h"
+#import "MapViewController.h"
 
 @interface DetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -18,4 +20,6 @@
 @property (retain, nonatomic) NSString *venueCategory;
 @property (retain, nonatomic) NSString *venueCity;
 @property (retain, nonatomic) NSString *venueStreet;
+@property (retain, nonatomic) NSString *venueDistance;
+@property (retain, nonatomic) CLLocation *venueCoordinates;
 @end

@@ -17,6 +17,15 @@
 #pragma mark - Managing the detail item
 
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showMap"]) {
+        MapViewController *mapView = [segue destinationViewController];
+        mapView.passedCoordinates = _venueCoordinates;
+        mapView.passedName = _venueName;
+        mapView.passedDistance = _venueDistance;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -24,7 +33,6 @@
     _categoryLabel.text = self.venueCategory;
     _cityLabel.text = self.venueCity;
     _streetLabel.text = self.venueStreet;
-//    NSLog(@"PI %@", self.venueName);
 }
 
 - (void)didReceiveMemoryWarning {
