@@ -13,6 +13,7 @@
 
 
 @interface MasterViewController : UITableViewController <CLLocationManagerDelegate>
+- (IBAction)refreshButton:(UIBarButtonItem *)sender;
 @property (nonatomic , strong) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *location;
 
