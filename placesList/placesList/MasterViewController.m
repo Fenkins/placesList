@@ -18,6 +18,8 @@
     NSArray *categoryArray;
     NSArray *distanceArray;
     NSArray *coordinatesArray;
+    NSArray *cityesArray;
+    NSArray *streetsArray;
 }
 
 - (void)awakeFromNib {
@@ -27,8 +29,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self getVenuesList];
     [self locationManSet];
+    [self getVenuesList];
     NSLog(@"COORD %f",_location.coordinate.latitude);
 }
 
@@ -44,6 +46,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DetailViewController *detailVC = [segue destinationViewController];
         detailVC.venueName = nameArray[indexPath.row];
+        detailVC.venueCategory = categoryArray[indexPath.row];
+        detailVC.venueCity = cityesArray[indexPath.row];
+        detailVC.venueStreet = streetsArray[indexPath.row];
     }
 }
 
@@ -94,6 +99,8 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     _location = (CLLocation*)locations.lastObject;
     NSLog(@"Longitude: %f, Latitude: %f", _location.coordinate.longitude, _location.coordinate.latitude);
+    [_locationManager stopMonitoringSignificantLocationChanges];
+    [_locationManager stopUpdatingLocation];
 }
 
 //- (void)locationManager:(CLLocationManager *)manager
@@ -123,8 +130,15 @@
     NSString *dateString = [dateFormatter stringFromDate:currentDate];
     NSString *radiusMeters = @"2000";
     NSString *oAuthToken = @"KVSG0FHB52JN4GWYVLENEKXN1HKJJXPTLW1ZKMWQ21HUSZGO";
-    CGFloat latitude = 18.5308225;
-    CGFloat longitude = 73.8474647;
+    CGFloat latitude;// = 18.5308225;
+    CGFloat longitude;// = 73.8474647;
+    if (_location) {
+        latitude = _location.coordinate.latitude;
+        longitude = _location.coordinate.longitude;
+    } else {
+        UIAlertView *locationNotSet = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Location not set, try to enable location services" delegate:nil cancelButtonTitle:@"Mkay" otherButtonTitles:nil];
+        [locationNotSet show];
+    }
     NSString *latitudeStr = [NSString stringWithFormat:@"%f",latitude];
     NSString *longitudeStr = [NSString stringWithFormat:@"%f",longitude];
     NSMutableString *lat_longString = [[NSMutableString alloc]initWithString:latitudeStr];
@@ -143,8 +157,8 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Error" message:[error localizedDescription] delegate:nil cancelButtonTitle:@"Mkay" otherButtonTitles:nil];
         [alert show];
     } else {
-        //NSString *jsonString = [[NSString alloc]initWithData:responce encoding:NSUTF8StringEncoding];
-        //NSLog(@"JSONSTRING %@",jsonString);
+        NSString *jsonString = [[NSString alloc]initWithData:response encoding:NSUTF8StringEncoding];
+        NSLog(@"JSONSTRING %@",jsonString);
         NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:response options:kNilOptions error:&error];
         NSDictionary *responseData = [[jsonResponse objectForKey:@"response"]objectForKey:@"venues"];
         // What is the name?
@@ -178,7 +192,7 @@
         }
         distanceArray = [distanceStackArray copy];
         
-        // What are coordinates of the venue/venues?
+        // What are the coordinates of the venue/venues?
 //        NSArray *coordinatesLatArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lat"];
 //        NSArray *coordinatesLngArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"lng"];
         NSMutableArray *coordinatesMutableArray = [[NSMutableArray alloc]init];
@@ -188,7 +202,46 @@
             CLLocation *venueLocation = [[CLLocation alloc]initWithLatitude:latitude longitude:longitude];
             [coordinatesMutableArray addObject:venueLocation];
         }
-        NSLog(@"CRAP %@",coordinatesMutableArray);
+        
+        // What are the cityes our venues in?
+        NSArray *cityesArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"city"];
+        NSMutableArray *cityesStackArray;
+        for (NSString *everyCity in cityesArrayWithDict) {
+            if (cityesStackArray) {
+                [cityesStackArray addObject:everyCity];
+            } else {
+                cityesStackArray = [[NSMutableArray alloc]init];
+                [cityesStackArray addObject:everyCity];
+            }
+        }
+        cityesArray = [cityesStackArray copy];
+        NSLog(@"%@",cityesArray);
+        
+        // What are the streets our venues in?
+        NSArray *streetsArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"crossStreet"];
+        NSMutableArray *streetsStackArray;
+        
+        for (NSObject *everyStreet in streetsArrayWithDict) {
+            if (streetsStackArray) {
+                if ([everyStreet isKindOfClass:[NSString class]]) {
+                    [streetsStackArray addObject:everyStreet];
+                } else {
+                    NSString *noInfoAvailible = @"No information availible for this venue";
+                    [streetsStackArray addObject:noInfoAvailible];
+                }
+            } else {
+                streetsStackArray = [[NSMutableArray alloc]init];
+                if ([everyStreet isKindOfClass:[NSString class]]) {
+                    [streetsStackArray addObject:everyStreet];
+                } else {
+                    NSString *noInfoAvailible = @"No information availible for this venus";
+                    [streetsStackArray addObject:noInfoAvailible];
+                }
+            }
+        }
+        streetsArray = [streetsStackArray copy];
+        NSLog(@"%@",streetsArray);
+
     }
 }
 

@@ -19,4 +19,3 @@
 @property (retain, nonatomic) NSString *venueCity;
 @property (retain, nonatomic) NSString *venueStreet;
 @end
-

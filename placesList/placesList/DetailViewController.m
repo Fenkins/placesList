@@ -21,7 +21,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     _nameLabel.text = self.venueName;
-    NSLog(@"PI %@", self.venueName);
+    _categoryLabel.text = self.venueCategory;
+    _cityLabel.text = self.venueCity;
+    _streetLabel.text = self.venueStreet;
+//    NSLog(@"PI %@", self.venueName);
 }
 
 - (void)didReceiveMemoryWarning {
