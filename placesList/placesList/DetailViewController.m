@@ -20,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    _nameLabel.text = self.venueName;
     NSLog(@"PI %@", self.venueName);
 }
 

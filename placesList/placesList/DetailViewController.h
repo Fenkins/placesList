@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController
-@property (retain, nonatomic) NSString *venueName;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *streetLabel;
 
+@property (retain, nonatomic) NSString *venueName;
+@property (retain, nonatomic) NSString *venueCategory;
+@property (retain, nonatomic) NSString *venueCity;
+@property (retain, nonatomic) NSString *venueStreet;
 @end
 

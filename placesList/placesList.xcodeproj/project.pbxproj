@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA48B4341B7340BE001C0D29 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA48B4331B7340BE001C0D29 /* MapViewController.m */; };
 		AA949D2F1B71493200395CAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA949D2E1B71493200395CAE /* main.m */; };
 		AA949D321B71493200395CAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA949D311B71493200395CAE /* AppDelegate.m */; };
 		AA949D351B71493200395CAE /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA949D341B71493200395CAE /* MasterViewController.m */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AA48B4321B7340BE001C0D29 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		AA48B4331B7340BE001C0D29 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AA949D291B71493200395CAE /* placesList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = placesList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA949D2D1B71493200395CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA949D2E1B71493200395CAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				AA949D341B71493200395CAE /* MasterViewController.m */,
 				AA949D361B71493200395CAE /* DetailViewController.h */,
 				AA949D371B71493200395CAE /* DetailViewController.m */,
+				AA48B4321B7340BE001C0D29 /* MapViewController.h */,
+				AA48B4331B7340BE001C0D29 /* MapViewController.m */,
 				AA949D551B71498000395CAE /* VenuesListTableViewCell.h */,
 				AA949D561B71498000395CAE /* VenuesListTableViewCell.m */,
 				AA949D391B71493200395CAE /* Main.storyboard */,
@@ -244,6 +249,7 @@
 				AA949D571B71498000395CAE /* VenuesListTableViewCell.m in Sources */,
 				AA949D321B71493200395CAE /* AppDelegate.m in Sources */,
 				AA949D351B71493200395CAE /* MasterViewController.m in Sources */,
+				AA48B4341B7340BE001C0D29 /* MapViewController.m in Sources */,
 				AA949D2F1B71493200395CAE /* main.m in Sources */,
 				AA949D381B71493200395CAE /* DetailViewController.m in Sources */,
 			);
