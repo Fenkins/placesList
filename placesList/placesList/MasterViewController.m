@@ -165,7 +165,7 @@
     NSMutableString *lat_longString = [[NSMutableString alloc]initWithString:latitudeStr];
     [lat_longString appendString:@","];
     [lat_longString appendString:longitudeStr];
-    NSString *query = @"cafe";
+    NSString *query = @"Кафе";
     NSString *resultLimit = @"50";
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%@&query=%@&limit=%@&radius=%@&oauth_token=%@&v=%@", lat_longString, query, resultLimit, radiusMeters, oAuthToken, dateString];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
