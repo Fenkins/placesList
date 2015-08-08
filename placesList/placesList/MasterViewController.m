@@ -165,7 +165,7 @@
     NSMutableString *lat_longString = [[NSMutableString alloc]initWithString:latitudeStr];
     [lat_longString appendString:@","];
     [lat_longString appendString:longitudeStr];
-    NSString *query = @"Кафе";
+    NSString *query = @"кафе cafe";
     NSString *resultLimit = @"50";
     NSString *urlString = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search?ll=%@&query=%@&limit=%@&radius=%@&oauth_token=%@&v=%@", lat_longString, query, resultLimit, radiusMeters, oAuthToken, dateString];
     urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -223,18 +223,31 @@
         }
         coordinatesArray = [coordinatesMutableArray copy];
         
+        
         // What are the cityes our venues in?
         NSArray *cityesArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"city"];
         NSMutableArray *cityesStackArray;
-        for (NSString *everyCity in cityesArrayWithDict) {
+        
+        for (NSObject *everyCity in cityesArrayWithDict) {
             if (cityesStackArray) {
-                [cityesStackArray addObject:everyCity];
+                if ([everyCity isKindOfClass:[NSString class]]) {
+                    [cityesStackArray addObject:everyCity];
+                } else {
+                    NSString *noInfoAvailible = @"No city information availible for this venue";
+                    [cityesStackArray addObject:noInfoAvailible];
+                }
             } else {
                 cityesStackArray = [[NSMutableArray alloc]init];
-                [cityesStackArray addObject:everyCity];
+                if ([everyCity isKindOfClass:[NSString class]]) {
+                    [cityesStackArray addObject:everyCity];
+                } else {
+                    NSString *noInfoAvailible = @"No city information availible for this venue";
+                    [cityesStackArray addObject:noInfoAvailible];
+                }
             }
         }
         cityesArray = [cityesStackArray copy];
+        
         
         // What are the streets our venues in?
         NSArray *streetsArrayWithDict = [[responseData valueForKey:@"location"]valueForKey:@"crossStreet"];
@@ -245,7 +258,7 @@
                 if ([everyStreet isKindOfClass:[NSString class]]) {
                     [streetsStackArray addObject:everyStreet];
                 } else {
-                    NSString *noInfoAvailible = @"No information availible for this venue";
+                    NSString *noInfoAvailible = @"No street information availible for this venue";
                     [streetsStackArray addObject:noInfoAvailible];
                 }
             } else {
@@ -253,7 +266,7 @@
                 if ([everyStreet isKindOfClass:[NSString class]]) {
                     [streetsStackArray addObject:everyStreet];
                 } else {
-                    NSString *noInfoAvailible = @"No information availible for this venus";
+                    NSString *noInfoAvailible = @"No street information availible for this venue";
                     [streetsStackArray addObject:noInfoAvailible];
                 }
             }
