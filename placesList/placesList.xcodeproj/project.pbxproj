@@ -19,7 +19,6 @@
 		AA949D571B71498000395CAE /* VenuesListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA949D561B71498000395CAE /* VenuesListTableViewCell.m */; };
 		AACB2B0A1B7209B500D88405 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACB2B091B7209B500D88405 /* CoreLocation.framework */; };
 		AACB2B0C1B7228BA00D88405 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACB2B0B1B7228BA00D88405 /* MapKit.framework */; };
-		AACB2B0E1B7235D300D88405 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACB2B0D1B7235D300D88405 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +53,6 @@
 		AA949D561B71498000395CAE /* VenuesListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VenuesListTableViewCell.m; path = ../VenuesListTableViewCell.m; sourceTree = "<group>"; };
 		AACB2B091B7209B500D88405 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		AACB2B0B1B7228BA00D88405 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		AACB2B0D1B7235D300D88405 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				AA949D2D1B71493200395CAE /* Info.plist */,
-				AACB2B0D1B7235D300D88405 /* Entitlements.plist */,
 				AA949D2E1B71493200395CAE /* main.m */,
 			);
 			name = "Supporting Files";
@@ -194,6 +191,7 @@
 				TargetAttributes = {
 					AA949D281B71493200395CAE = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = L22SYWPUG4;
 					};
 					AA949D441B71493200395CAE = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -225,7 +223,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACB2B0E1B7235D300D88405 /* Entitlements.plist in Resources */,
 				AA949D3B1B71493200395CAE /* Main.storyboard in Resources */,
 				AA949D401B71493200395CAE /* LaunchScreen.xib in Resources */,
 				AA949D3D1B71493200395CAE /* Images.xcassets in Resources */,
@@ -310,9 +307,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = placesList/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -355,9 +351,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = placesList/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -381,12 +376,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = placesList/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				INFOPLIST_FILE = placesList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -394,12 +390,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = placesList/Entitlements.plist;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				INFOPLIST_FILE = placesList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
